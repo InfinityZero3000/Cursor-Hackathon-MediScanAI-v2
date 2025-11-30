@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "Web/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://your-backend-url.com/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Web/$1"
+    }
+  ],
+  "buildCommand": "cd Web && npm install && npm run build",
+  "outputDirectory": "Web/dist",
+  "installCommand": "cd Web && npm install"
+}
